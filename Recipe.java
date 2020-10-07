@@ -38,6 +38,7 @@ public class Recipe {
 		return this.instructions;
 	}
 	
+	// print the contents of the recipe
 	public void displayRecipe() {
 		System.out.println("Recipe: " + this.id);
 		System.out.println("Title: " + this.title);
