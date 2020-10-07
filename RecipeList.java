@@ -1,5 +1,6 @@
 import java.util.*;
-//import org.json.simple.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import java.io.*;
 
 public class RecipeList {
@@ -11,7 +12,7 @@ public class RecipeList {
 	//class methods
 
 	// prompts user for new recipe information then stores it
-	public void createRecipe(Scanner scanner) {
+	public boolean createRecipe(Scanner scanner) {
 		System.out.println("Welcome to creating a recipe!");
 		
 		System.out.println("What will the recipe be called? (Enter one word with no whitespace)");
@@ -44,48 +45,58 @@ public class RecipeList {
 			i++;
 		}
 		
-		System.out.println("Adding the recipe to recipe book...");
-		
+		System.out.println("Adding the following recipe to recipe book...");
 		newRecipe.displayRecipe();
-		//addRecipeToDatabase(newRecipe);
+		return addRecipeToDatabase(newRecipe);
 	}
 	
 	// adds recipe to local memory and database
-	public void addRecipeToDatabase(Recipe recipe) {
+	public boolean addRecipeToDatabase(Recipe recipe) {
 		
 		// add to local list of recipes
 		this.recipeList.add(recipe);
 		
 		// add to persistent storage 
-		//JSONObject jsonObj = generateJSONObject(recipe);
-		
+		JSONObject jsonObj = generateJSONObject(recipe);
+		try {
+			FileWriter outFile = new FileWriter(this.fileName);
+			outFile.write(jsonObj.toJSONString());
+			outFile.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		System.out.println("New recipe now added!");
+		return true;
 	}
 	
-//	public JSONObject generateJSONObject(Recipe recipe) {
-//		JSONObject newObject = new JSONObject();
-//		
-//		JSONObject newRecipe = new JSONObject();
-//		newRecipe.put("title", recipe.getTitle());
-//		newRecipe.put("description", recipe.getDescription());
-//		
-//		JSONArray ingsJSON = new JSONArray();
-//		ArrayList<String> ings = recipe.getIngredients();
-//		for (int i = 0; i < ings.size(); i++) {
-//			ingsJSON.add(ings.get(i));
-//		}
-//		newRecipe.put("ingredients", ingsJSON);
-//		
-//		JSONArray instrsJSON = new JSONArray();
-//		ArrayList<String> instrs = recipe.getInstructions();
-//		for (int i = 0; i < instrs.size(); i++) {
-//			instrsJSON.add(instrs.get(i));
-//		}
-//		newRecipe.put("instructions", instrsJSON);
-//		
-//		newObject.put(recipe.getId(), newRecipe);
-//		
-//		return newObject;
-//	}
+	// converts the Recipe object into a JSON object
+	public JSONObject generateJSONObject(Recipe recipe) {
+		JSONObject newObject = new JSONObject();
+		
+		JSONObject newRecipe = new JSONObject();
+		newRecipe.put("title", recipe.getTitle());
+		newRecipe.put("description", recipe.getDescription());
+		
+		JSONArray ingsJSON = new JSONArray();
+		ArrayList<String> ings = recipe.getIngredients();
+		for (int i = 0; i < ings.size(); i++) {
+			ingsJSON.add(ings.get(i));
+		}
+		newRecipe.put("ingredients", ingsJSON);
+		
+		JSONArray instrsJSON = new JSONArray();
+		ArrayList<String> instrs = recipe.getInstructions();
+		for (int i = 0; i < instrs.size(); i++) {
+			instrsJSON.add(instrs.get(i));
+		}
+		newRecipe.put("instructions", instrsJSON);
+		
+		newObject.put(recipe.getId(), newRecipe);
+		
+		return newObject;
+	}
 
 	//Retrieve
 //	public boolean retrieveRecipe(Scanner scanner);
