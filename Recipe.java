@@ -23,3 +23,30 @@ public class Recipe {
 	
 
 }
+
+
+//JSON DATABASE STRUCTURE
+
+/*
+database = {
+	"title": {
+		"description": "This is the description",
+		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
+		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
+	},
+	"titleTwo": {
+		"description": "This is the description",
+		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
+		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
+	},
+	"titleThree": {
+		"description": "This is the description",
+		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
+		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
+	}
+}
+*/	
+	
+	
+	
+	
