@@ -1,17 +1,19 @@
-
+import java.util.*;
+//import org.json.simple.JSONObject;
 import java.io.*;
-import RecipeList;
+
 
 public class RecipeBook {
 
 	public static void main(String[] args) {
 
 		//START
-		Scanner scanner = new Scanner();
+		Scanner scanner = new Scanner(System.in);
 		RecipeList recipeList = new RecipeList();
-		recipeList.extractRecipe();
+		//recipeList.extractRecipe();
 
-
+		// TEST
+		recipeList.createRecipe(scanner);
 		//UI
 		
 
