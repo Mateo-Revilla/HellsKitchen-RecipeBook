@@ -29,17 +29,20 @@ public class Recipe {
 
 /*
 database = {
-	"title": {
+	"id1": {
+		"title": "Title",
 		"description": "This is the description",
 		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
 		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
 	},
-	"titleTwo": {
+	"id2": {
+		"title": "Title",
 		"description": "This is the description",
 		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
 		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
 	},
-	"titleThree": {
+	"id3": {
+		"title": "Title",
 		"description": "This is the description",
 		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
 		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
