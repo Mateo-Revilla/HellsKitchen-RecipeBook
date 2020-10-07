@@ -1,54 +1,27 @@
 import java.util.*;
 import org.json.simple.JSONObject;
+import java.io.*
 
 public class Recipe {
 
 	//object properties
+	private String id;
 	private String title;
 	private String description;
 	private ArrayList<String> ingredients = new ArrayList<>();
 	private ArrayList<String> instructions = new ArrayList<>();
 
-	//class properties
-	static JSONObject database = new JSONObject();
-
-
-	//class methods
-
-	static public void addRecipe();
-
-	static public void extractRecipe();
-
+	
+	//Exploration
+	public boolean exploreRecipe(Scanner scanner);
+	public boolean readAllRecipe();
+	public boolean readStepRecipe();
 
 	
-
 }
 
 
-//JSON DATABASE STRUCTURE
 
-/*
-database = {
-	"id1": {
-		"title": "Title",
-		"description": "This is the description",
-		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
-		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
-	},
-	"id2": {
-		"title": "Title",
-		"description": "This is the description",
-		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
-		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
-	},
-	"id3": {
-		"title": "Title",
-		"description": "This is the description",
-		"ingredients": ["ingredientOne", "ingredientTwo", "ingredientThree"],
-		"instructions": ["instructionOne", "instructionTwo", "instructionThree"
-	}
-}
-*/	
 	
 	
 	
