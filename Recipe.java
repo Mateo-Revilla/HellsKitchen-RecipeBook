@@ -56,7 +56,7 @@ public class Recipe {
 		for (int i = 0; i < this.instructions.size(); i++) {
 			System.out.println(this.instructions.get(i));
 		}
-		System.out.println("END OF RECIPE " + this.id + "------------");
+		System.out.println("END OF RECIPE " + this.id + " ------------\n");
 	}
 	
 	//Exploration
