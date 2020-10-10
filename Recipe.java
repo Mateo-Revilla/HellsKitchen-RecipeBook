@@ -10,13 +10,14 @@ public class Recipe {
 	private String description;
 	private ArrayList<String> ingredients;
 	private ArrayList<String> instructions;
+	private int step = 0;
 
 	Recipe(String id, String title, String description) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.ingredients = new ArrayList<>();
-		this.instructions = new ArrayList<>();
+		this.ingredients = new ArrayList<String>();
+		this.instructions = new ArrayList<String>();
 	}
 
 	public String getId() {
@@ -41,9 +42,36 @@ public class Recipe {
 
 	//Exploration
 	public boolean exploreRecipe(Scanner scanner);
-	public boolean readAllRecipe();
-	public boolean readStepRecipe();
-
+	public boolean readAllRecipe(){
+		ArrayList<String> instru = getInstructions();
+		ArrayList<String> ing = getIngredients();
+		int instrulen = instru.size();
+		int inglen = ing.size();
+		for(int a = 0; a < inglen; a++){
+			System.out.println(ing.get(a));
+		}
+		for(int b = 0; b < instrulen; b++){
+	    System.out.println(instru.get(b));
+		}
+		System.out.prinln("End of Recipe! Enjoy!");
+	}
+	public boolean readStepRecipe(){
+		ArrayList<String> instru = getInstructions();
+		int instrulen = instru.size();
+		if(step == 0){
+			ArrayList<String> ing = getIngredients();
+			int inglen = ing.size();
+			for(int a = 0; a < inglen; a++){
+				System.out.println(ing.get(a));
+			}
+		}
+		System.out.println(instru.get(step));
+		step += 1;
+		if(step == instrulen){
+			step = 0;
+			System.out.prinln("End of Recipe! Enjoy!");
+		}
+	}
 
 
 }
