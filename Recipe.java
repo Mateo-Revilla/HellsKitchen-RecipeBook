@@ -17,26 +17,26 @@ public class Recipe {
 		this.ingredients = new ArrayList<>();
 		this.instructions = new ArrayList<>();
 	}
-	
+
 	public String getId() {
 		return this.id;
 	}
-	
+
 	public String getTitle() {
 		return this.title;
 	}
-	
+
 	public String getDescription() {
 		return this.description;
 	}
-	
+
 	public ArrayList<String> getIngredients() {
 		return this.ingredients;
 	}
-	
+
 	public ArrayList<String> getInstructions() {
 		return this.instructions;
-	}
+  }
 	
 	// print the contents of the recipe
 	public void displayRecipe() {
@@ -59,18 +59,14 @@ public class Recipe {
 		System.out.println("END OF RECIPE " + this.id + " ------------\n");
 	}
 	
+
+
+
 	//Exploration
 //	public boolean exploreRecipe(Scanner scanner);
 //	public boolean readAllRecipe();
 //	public boolean readStepRecipe();
 
-	
-	
+
+
 }
-
-
-
-	
-	
-	
-	
