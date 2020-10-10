@@ -1,6 +1,5 @@
 import java.util.*;
-import org.json.simple.JSONObject;
-import java.io.*
+import java.io.*;
 
 public class Recipe {
 
@@ -37,12 +36,36 @@ public class Recipe {
 
 	public ArrayList<String> getInstructions() {
 		return this.instructions;
+  }
+	
+	// print the contents of the recipe
+	public void displayRecipe() {
+		System.out.println("Recipe: " + this.id);
+		System.out.println("Title: " + this.title);
+		System.out.println("Description: " + this.description);
+		System.out.print("Ingredients: [");
+		for (int i = 0; i < this.ingredients.size(); i++) {
+			if (i == this.ingredients.size() - 1) {
+				System.out.print(this.ingredients.get(i) + "]");
+			}
+			else {
+				System.out.print(this.ingredients.get(i) + ", ");
+			}	
+		}
+		System.out.println("\nInstructions: ");
+		for (int i = 0; i < this.instructions.size(); i++) {
+			System.out.println(this.instructions.get(i));
+		}
+		System.out.println("END OF RECIPE " + this.id + " ------------\n");
 	}
+	
+
+
 
 	//Exploration
-	public boolean exploreRecipe(Scanner scanner);
-	public boolean readAllRecipe();
-	public boolean readStepRecipe();
+//	public boolean exploreRecipe(Scanner scanner);
+//	public boolean readAllRecipe();
+//	public boolean readStepRecipe();
 
 
 
