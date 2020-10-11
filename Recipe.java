@@ -64,7 +64,7 @@ public class Recipe {
 	            System.out.println(ing.get(a));
 		}
 		Scanner inputReader = new Scanner(System.in);
-		while (scanner.hasNextLine() && step != instrulen) {
+		while (scanner.hasNextLine() && step < instrulen) {
 		     System.out.println(instru.get(step));
 		     step += 1;
                 } 
