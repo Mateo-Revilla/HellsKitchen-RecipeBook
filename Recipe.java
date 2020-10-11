@@ -63,7 +63,9 @@ public class Recipe {
 
 
 	//Exploration
-//	public boolean exploreRecipe(Scanner scanner);
+	public boolean exploreRecipe(Scanner scanner) {
+		System.out.println("explore");
+	}
 //	public boolean readAllRecipe();
 //	public boolean readStepRecipe();
 

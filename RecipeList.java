@@ -160,18 +160,18 @@ public class RecipeList {
 		if (searchType.equals('s')) {
 			System.out.println("Please enter the search phrase");
 			String searchString = scanner.nextLine();
-			searchRecipe(searchString);
+			searchRecipe(searchString, scanner);
 		} else if (searchType.equals('b')) {
 			browseRecipe(scanner);
 		}
 	}
 
-	public void searchRecipe(String searchTitle) {
+	public void searchRecipe(String searchTitle, Scanner scanner) {
 		for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);
 			String recTitle = rec.getTitle();
 			if (recTitle.equals(searchTitle)) {
-				rec.exploreRecipe();
+				rec.exploreRecipe(scanner);
 			}
 		}
 		System.out.println("No matches found");
@@ -184,13 +184,13 @@ public class RecipeList {
 			String redId = rec.getId();
 			System.out.println(redId + " " + recTitle);
 		}
-		System.out.println("Please enter the ID number of the recipe you want to select")
+		System.out.println("Please enter the ID number of the recipe you want to select");
 		String id = scanner.nextLine();
 		for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);
 			String redId = rec.getId();
 			if (id.equals(redId)) {
-				rec.exploreRecipe();
+				rec.exploreRecipe(scanner);
 			}
 		}
 	}
