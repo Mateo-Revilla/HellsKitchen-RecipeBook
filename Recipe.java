@@ -58,19 +58,20 @@ public class Recipe {
 	public boolean readStepRecipe(){
 		ArrayList<String> instru = getInstructions();
 		int instrulen = instru.size();
-		if(step == 0){
-			ArrayList<String> ing = getIngredients();
-			int inglen = ing.size();
-			for(int a = 0; a < inglen; a++){
-				System.out.println(ing.get(a));
-			}
+		ArrayList<String> ing = getIngredients();
+		int inglen = ing.size();
+		for(int a = 0; a < inglen; a++){
+	            System.out.println(ing.get(a));
 		}
-		System.out.println(instru.get(step));
-		step += 1;
-		if(step == instrulen){
-			step = 0;
-			System.out.prinln("End of Recipe! Enjoy!");
-		}
+		Scanner inputReader = new Scanner(System.in);
+		while (scanner.hasNextLine() && step != instrulen) {
+		     System.out.println(instru.get(step));
+		     step += 1;
+                } 
+                // close the scanner 
+                scanner.close(); 
+		step = 0;
+		System.out.prinln("End of Recipe! Enjoy!");
 	}
 
 
