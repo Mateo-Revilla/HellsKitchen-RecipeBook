@@ -51,9 +51,9 @@ public class Recipe {
 			System.out.println(ing.get(a));
 		}
 		for(int b = 0; b < instrulen; b++){
-	    System.out.println(instru.get(b));
+	            Systems.out.println(instru.get(b));
 		}
-		System.out.prinln("End of Recipe! Enjoy!");
+		Systems.out.prinln("End of Recipe! Enjoy!");
 	}
 	public boolean readStepRecipe(){
 		ArrayList<String> instru = getInstructions();
@@ -64,12 +64,12 @@ public class Recipe {
 	            System.out.println(ing.get(a));
 		}
 		Scanner inputReader = new Scanner(System.in);
-		while (scanner.hasNextLine() && step < instrulen) {
+		while (inputReader.hasNextLine() && step < instrulen) {
 		     System.out.println(instru.get(step));
 		     step += 1;
                 } 
                 // close the scanner 
-                scanner.close(); 
+                inputReader.close(); 
 		step = 0;
 		System.out.prinln("End of Recipe! Enjoy!");
 	}
