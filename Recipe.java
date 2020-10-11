@@ -49,10 +49,11 @@ public class Recipe {
 		int instrulen = instru.size();
 		int inglen = ing.size();
 		for(int a = 0; a < inglen; a++){
-			System.out.println(ing.get(a));
+                    System.out.println(a + " " + ing.get(a));
 		}
 		for(int b = 0; b < instrulen; b++){
-	            Systems.out.println(instru.get(b));
+	            System.out.println(b + " " + instru.get(b));
+	            System.out.println();
 		}
 		Systems.out.prinln("End of Recipe! Enjoy!");
 	}
@@ -64,11 +65,12 @@ public class Recipe {
 		ArrayList<String> ing = this.getIngredients();
 		int inglen = ing.size();
 		for(int a = 0; a < inglen; a++){
-	            System.out.println(ing.get(a));
+	            System.out.println(a + " " + ing.get(a));
 		}
 		Scanner inputReader = new Scanner(System.in);
 		while (inputReader.hasNextLine() && step < instrulen) {
-		     System.out.println(instru.get(step));
+		     System.out.println();
+		     System.out.println((step + 1) + " " + instru.get(step));
 		     step += 1;
 		     inputReader.nextLine();
                 } 
