@@ -154,9 +154,46 @@ public class RecipeList {
 		}
 	}
 	
-//	public boolean retrieveRecipe(Scanner scanner);
-//	public boolean searchRecipe(String title);
-//	public boolean browseRecipe();
+	public void retrieveRecipe(Scanner scanner) {
+		System.out.println("How would you like to retrieve a recipe? Type 's' to search and 'b' to browse");
+		String searchType = scanner.nextLine();
+		if (searchType.equals('s')) {
+			System.out.println("Please enter the search phrase");
+			String searchString = scanner.nextLine();
+			searchRecipe(searchString, scanner);
+		} else if (searchType.equals('b')) {
+			browseRecipe(scanner);
+		}
+	}
+
+	public void searchRecipe(String searchTitle, Scanner scanner) {
+		for (int i = 0; i < this.recipeList.size(); i++) {
+			Recipe rec = this.recipeList.get(i);
+			String recTitle = rec.getTitle();
+			if (recTitle.equals(searchTitle)) {
+				rec.exploreRecipe(scanner);
+			}
+		}
+		System.out.println("No matches found");
+	}
+
+	public void browseRecipe(Scanner scanner) {
+		for (int i = 0; i < this.recipeList.size(); i++) {
+			Recipe rec = this.recipeList.get(i);
+			String recTitle = rec.getTitle();
+			String redId = rec.getId();
+			System.out.println(redId + " " + recTitle);
+		}
+		System.out.println("Please enter the ID number of the recipe you want to select");
+		String id = scanner.nextLine();
+		for (int i = 0; i < this.recipeList.size(); i++) {
+			Recipe rec = this.recipeList.get(i);
+			String redId = rec.getId();
+			if (id.equals(redId)) {
+				rec.exploreRecipe(scanner);
+			}
+		}
+	}
 
 	// saves the json database to an external file
 	public void saveDatabase() {
