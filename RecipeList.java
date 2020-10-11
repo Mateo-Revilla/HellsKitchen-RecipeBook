@@ -169,7 +169,7 @@ public class RecipeList {
 	public void searchRecipe(String searchTitle) {
 		for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);
-			recTitle = rec.getTitle();
+			String recTitle = rec.getTitle();
 			if (recTitle.equals(searchTitle)) {
 				rec.exploreRecipe();
 			}
@@ -180,15 +180,15 @@ public class RecipeList {
 	public void browseRecipe(Scanner scanner) {
 		for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);
-			recTitle = rec.getTitle();
-			redId = rec.getId();
+			String recTitle = rec.getTitle();
+			String redId = rec.getId();
 			System.out.println(redId + " " + recTitle);
 		}
 		System.out.println("Please enter the ID number of the recipe you want to select")
 		String id = scanner.nextLine();
 		for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);
-			redId = rec.getId();
+			String redId = rec.getId();
 			if (id.equals(redId)) {
 				rec.exploreRecipe();
 			}
