@@ -42,8 +42,10 @@ public class Recipe {
 	//Exploration
 	public boolean exploreRecipe(Scanner scanner);
 	public boolean readAllRecipe(){
-		ArrayList<String> instru = getInstructions();
-		ArrayList<String> ing = getIngredients();
+		System.out.println(this.getTitle());
+		System.out.println(this.getDescription());
+		ArrayList<String> instru = this.getInstructions();
+		ArrayList<String> ing = this.getIngredients();
 		int instrulen = instru.size();
 		int inglen = ing.size();
 		for(int a = 0; a < inglen; a++){
@@ -55,9 +57,11 @@ public class Recipe {
 		Systems.out.prinln("End of Recipe! Enjoy!");
 	}
 	public boolean readStepRecipe(){
-		ArrayList<String> instru = getInstructions();
+		System.out.println(this.getTitle());
+		System.out.println(this.getDescription());
+		ArrayList<String> instru = this.getInstructions();
 		int instrulen = instru.size();
-		ArrayList<String> ing = getIngredients();
+		ArrayList<String> ing = this.getIngredients();
 		int inglen = ing.size();
 		for(int a = 0; a < inglen; a++){
 	            System.out.println(ing.get(a));
