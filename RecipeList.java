@@ -154,9 +154,23 @@ public class RecipeList {
 		}
 	}
 	
-//	public boolean retrieveRecipe(Scanner scanner);
-//	public boolean searchRecipe(String title);
-//	public boolean browseRecipe();
+	public void retrieveRecipe(Scanner scanner) {
+		System.out.println("How would you like to retrieve a recipe? Type 's' to search and 'b' to browse");
+		String searchType = scanner.nextLine();
+		if (searchType.equals('s')) {
+			System.out.println("Please enter the search phrase");
+			String searchString = scanner.nextLine();
+			searchRecipe(searchString);
+		} else if (searchType.equals('b')) {
+			browseRecipe();
+		}
+		
+	}
+
+	public void searchRecipe(String title) {
+		
+	}
+	public void browseRecipe();
 
 	// saves the json database to an external file
 	public void saveDatabase() {
