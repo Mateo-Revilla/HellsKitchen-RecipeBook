@@ -10,26 +10,11 @@ public class RecipeBook {
 		//START
 		Scanner scanner = new Scanner(System.in);
 		RecipeList recipeList = new RecipeList();
-		
-
-		// TEST
-		// testing extraction of json file
+		UserInterface ui = new UserInterface(scanner, recipeList);
 		recipeList.extractRecipe();
-		recipeList.displayRecipeList();
-		
-		// testing creation of recipes
-		System.out.println("Enter random character or 'end' to end. ");
-		String end = scanner.nextLine().toLowerCase();
-		while (!end.equals("end")) {
-			recipeList.createRecipe(scanner);
-			System.out.println("Enter random character or 'end' to end");
-			end = scanner.nextLine().toLowerCase();
-		}
 		
 		//UI
-		
-
-
+		ui.execute();
 
 		//END
 		recipeList.saveDatabase();
@@ -38,3 +23,18 @@ public class RecipeBook {
 	}
 
 }
+
+/*
+
+recipeList.displayRecipeList();
+
+// testing creation of recipes
+		System.out.println("Enter random character or 'end' to end. ");
+		String end = scanner.nextLine().toLowerCase();
+		while (!end.equals("end")) {
+			recipeList.createRecipe(scanner);
+			System.out.println("Enter random character or 'end' to end");
+			end = scanner.nextLine().toLowerCase();
+		}
+
+*/

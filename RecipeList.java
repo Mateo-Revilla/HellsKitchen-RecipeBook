@@ -50,7 +50,6 @@ public class RecipeList {
 		// add to persistent storage 
 		JSONObject jsonObj = generateJSONObject(recipe);
 		database.add(jsonObj);
-		System.out.println("New recipe now added!");
 	}
 	
 	// converts the JSON object to a Recipe object 
@@ -111,7 +110,7 @@ public class RecipeList {
 	public void createRecipe(Scanner scanner) {
 		System.out.println("Welcome to creating a recipe!");
 		
-		System.out.println("What will the recipe be called? (Enter one word with no whitespace)");
+		System.out.println("What will the recipe be called?");
 		String name = scanner.nextLine().toLowerCase();
 		System.out.println("Please add a description then press ENTER.");
 		String des = scanner.nextLine();
@@ -154,30 +153,21 @@ public class RecipeList {
 		}
 	}
 	
-	public void retrieveRecipe(Scanner scanner) {
-		System.out.println("How would you like to retrieve a recipe? Type 's' to search and 'b' to browse");
-		String searchType = scanner.nextLine();
-		if (searchType.equals('s')) {
-			System.out.println("Please enter the search phrase");
-			String searchString = scanner.nextLine();
-			searchRecipe(searchString, scanner);
-		} else if (searchType.equals('b')) {
-			browseRecipe(scanner);
-		}
-	}
 
-	public void searchRecipe(String searchTitle, Scanner scanner) {
+
+	public Recipe searchRecipe(String searchTitle) {
 		for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);
 			String recTitle = rec.getTitle();
 			if (recTitle.equals(searchTitle)) {
-				rec.exploreRecipe(scanner);
+				return rec;
 			}
 		}
 		System.out.println("No matches found");
+		return null;	
 	}
 
-	public void browseRecipe(Scanner scanner) {
+	public Recipe browseRecipe(Scanner scanner) {
 		for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);
 			String recTitle = rec.getTitle();
@@ -190,9 +180,12 @@ public class RecipeList {
 			Recipe rec = this.recipeList.get(i);
 			String redId = rec.getId();
 			if (id.equals(redId)) {
-				rec.exploreRecipe(scanner);
+				return rec;
 			}
 		}
+		//INVALID ID
+		System.out.println("No matches found");
+		return null;
 	}
 
 	// saves the json database to an external file

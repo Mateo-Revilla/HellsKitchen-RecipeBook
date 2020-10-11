@@ -61,13 +61,12 @@ public class Recipe {
 	
 
 
-
-	//Exploration
-	public boolean exploreRecipe(Scanner scanner) {
-		System.out.println("explore");
-	}
-//	public boolean readAllRecipe();
-//	public boolean readStepRecipe();
+ 	public void readAllRecipe() {
+ 		this.displayRecipe();
+ 	}
+  	public void readStepRecipe() {
+  		System.out.println("AAA");
+  	}
 
 
 
