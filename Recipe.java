@@ -71,7 +71,7 @@ public class Recipe {
                 // close the scanner 
                 inputReader.close(); 
 		step = 0;
-		System.out.prinln("End of Recipe! Enjoy!");
+		System.out.println("End of Recipe! Enjoy!");
 	}
 
 
