@@ -162,15 +162,38 @@ public class RecipeList {
 			String searchString = scanner.nextLine();
 			searchRecipe(searchString);
 		} else if (searchType.equals('b')) {
-			browseRecipe();
+			browseRecipe(scanner);
 		}
-		
 	}
 
-	public void searchRecipe(String title) {
-		
+	public void searchRecipe(String searchTitle) {
+		for (int i = 0; i < this.recipeList.size(); i++) {
+			Recipe rec = this.recipeList.get(i);
+			recTitle = rec.getTitle();
+			if (recTitle.equals(searchTitle)) {
+				rec.exploreRecipe();
+			}
+		}
+		System.out.println("No matches found");
 	}
-	public void browseRecipe();
+
+	public void browseRecipe(Scanner scanner) {
+		for (int i = 0; i < this.recipeList.size(); i++) {
+			Recipe rec = this.recipeList.get(i);
+			recTitle = rec.getTitle();
+			redId = rec.getId();
+			System.out.println(redId + " " + recTitle);
+		}
+		System.out.println("Please enter the ID number of the recipe you want to select")
+		String id = scanner.nextLine();
+		for (int i = 0; i < this.recipeList.size(); i++) {
+			Recipe rec = this.recipeList.get(i);
+			redId = rec.getId();
+			if (id.equals(redId)) {
+				rec.exploreRecipe();
+			}
+		}
+	}
 
 	// saves the json database to an external file
 	public void saveDatabase() {
