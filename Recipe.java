@@ -62,7 +62,6 @@ public class Recipe {
 
 
 	//Exploration
-	public boolean exploreRecipe(Scanner scanner);
 	public boolean readAllRecipe(){
 		System.out.println(this.getTitle());
 		System.out.println(this.getDescription());
@@ -77,7 +76,8 @@ public class Recipe {
 	            System.out.println(b + " " + instru.get(b));
 	            System.out.println();
 		}
-		Systems.out.prinln("End of Recipe! Enjoy!");
+		System.out.println("End of Recipe! Enjoy!");
+		return true;
 	}
 	public boolean readStepRecipe(){
 		System.out.println(this.getTitle());
@@ -95,11 +95,12 @@ public class Recipe {
 		     System.out.println((step + 1) + " " + instru.get(step));
 		     step += 1;
 		     inputReader.nextLine();
-                }
+    }
                 // close the scanner
-                inputReader.close();
+    //inputReader.close();
 		step = 0;
 		System.out.println("End of Recipe! Enjoy!");
+		return true;
 	}
 
 
