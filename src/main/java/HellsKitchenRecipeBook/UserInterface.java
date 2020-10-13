@@ -1,16 +1,17 @@
+package HellsKitchenRecipeBook;
+
 import java.util.*;
-import org.json.simple.*;
 import java.io.*;
 
 
 public class UserInterface {
 
 	private Scanner scanner;
-	private RecipeList recipeList;
+	private Server server;
 
-	UserInterface(Scanner scanner, RecipeList recipeList) {
+	UserInterface(Scanner scanner, Server server) {
 		this.scanner = scanner;
-		this.recipeList = recipeList;
+		this.server = server;
 	}
 
 	public void execute() {
@@ -23,7 +24,7 @@ public class UserInterface {
 		String userAnswer = scanner.nextLine().toUpperCase();
 		if(userAnswer.equals("C")) {
 			//CREATE
-			this.recipeList.createRecipe(this.scanner);
+			this.server.createRecipe(this.scanner);
 			createOrRetrieve();
 		} else if(userAnswer.equals("R")) {
 			//RETRIEVE
@@ -42,7 +43,7 @@ public class UserInterface {
 			//SEARCH BY NAME
 			System.out.println("Please enter title.");
 			String title = scanner.nextLine().toLowerCase();
-			Recipe rec = recipeList.searchRecipe(title);
+			Recipe rec = server.searchRecipe(title);
 			if (rec == null) {
 				System.out.println("Not found");
 				retrieveRecipe();
@@ -53,7 +54,7 @@ public class UserInterface {
 
 		} else if(userAnswer.equals("A")) {
 			//BROWSE ALL
-			Recipe rec = recipeList.browseRecipe(scanner);
+			Recipe rec = server.browseRecipe(scanner);
 			if (rec == null) {
 				System.out.println("Not found");
 				retrieveRecipe();
