@@ -87,12 +87,12 @@ public class Recipe {
 		ArrayList<String> ing = this.getIngredients();
 		int inglen = ing.size();
 		for(int a = 0; a < inglen; a++){
-	            System.out.println(a + " " + ing.get(a));
+	            System.out.println(a + 1 + " " + ing.get(a));
 		}
 		Scanner inputReader = new Scanner(System.in);
 		while (inputReader.hasNextLine() && step < instrulen) {
 		     System.out.println();
-		     System.out.println((step + 1) + " " + instru.get(step));
+		     System.out.println(instru.get(step));
 		     step += 1;
 		     inputReader.nextLine();
     }
