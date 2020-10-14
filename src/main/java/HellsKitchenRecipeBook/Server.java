@@ -15,7 +15,7 @@ public class Server {
 
 	private MongoCollection collection;
 
-	Server(){
+	Server() {
 		ConnectionString connString = new ConnectionString(
     	"mongodb+srv://user1:hellskitchen@hellskitchenrecipebook.vempc.mongodb.net/HellsKitchenRecipeBook?retryWrites=true&w=majority"
 		);
@@ -26,9 +26,6 @@ public class Server {
 		MongoClient mongoClient = MongoClients.create(settings);
 		MongoDatabase database = mongoClient.getDatabase("RecipeBook");
 		collection = database.getCollection("Recipes");
-		testInsert();
-
-
 	}
 
 	public void testInsert() {
@@ -44,13 +41,18 @@ public class Server {
 	
 	// adds recipe to local memory and JSON database
 	public void addRecipeToDatabase(Recipe recipe) {
+		Document document = new Document();
+		document.append("id", recipe.getId());
+		document.append("title", recipe.getTitle());
+		document.append("description", recipe.getDescription());
+		document.append("ingredients", recipe.getIngredients());
+		document.append("instructions", recipe.getInstructions());
+		collection.insertOne(document);
 	}
-	
-	
 	
 	// prompts user for new recipe information then stores it
 	public void createRecipe(Scanner scanner) {
-		/*System.out.println("Welcome to creating a recipe!");
+		System.out.println("Welcome to creating a recipe!");
 		
 		System.out.println("What will the recipe be called?");
 		String name = scanner.nextLine().toLowerCase();
@@ -84,11 +86,8 @@ public class Server {
 		
 		System.out.println("Adding the following recipe to recipe book...");
 		newRecipe.displayRecipe();
-		addRecipeToDatabase(newRecipe);*/
+		addRecipeToDatabase(newRecipe);
 	}
-
-	
-
 
 	public Recipe searchRecipe(String searchTitle) {
 		return null;	

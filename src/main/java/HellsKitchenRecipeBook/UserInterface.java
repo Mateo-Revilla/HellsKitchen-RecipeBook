@@ -15,7 +15,7 @@ public class UserInterface {
 	}
 
 	public void execute() {
-		System.out.println("Welcome to the Recipe Book. Here you wll be able to save and retrieve your favorite Recipes.");
+		System.out.println("Welcome to the Recipe Book. Here you will be able to save and retrieve your favorite Recipes.");
 		createOrRetrieve();
 	}
 
