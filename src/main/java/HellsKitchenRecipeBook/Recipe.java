@@ -18,6 +18,13 @@ public class Recipe {
 		this.instructions = new ArrayList<String>();
 	}
 
+	Recipe(String title, String description, ArrayList<String> ingredients, ArrayList<String> instructions) {
+		this.title = title;
+		this.description = description;
+		this.ingredients = ingredients;
+		this.instructions = instructions;
+	}
+
 	public String getTitle() {
 		return this.title;
 	}

@@ -1,19 +1,23 @@
 package HellsKitchenRecipeBook;
 
 import java.util.*;
-import java.io.*;
+import java.io.*; 
 import org.bson.Document;
+import com.mongodb.Block;
 
 import com.mongodb.ConnectionString;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.FindIterable;
+import static com.mongodb.client.model.Filters.*;
 import com.mongodb.MongoClientSettings;
 
 public class Server {
 
-	private MongoCollection collection;
+	private MongoCollection<Document> collection;
 
 	Server() {
 		ConnectionString connString = new ConnectionString(
@@ -26,6 +30,10 @@ public class Server {
 		MongoClient mongoClient = MongoClients.create(settings);
 		MongoDatabase database = mongoClient.getDatabase("RecipeBook");
 		collection = database.getCollection("Recipes");
+
+		//This is for testing purpose
+		searchRecipe("pasta");
+		browseRecipe( new Scanner(System.in));
 	}
 	
 	// adds recipe to MongoDB database
@@ -38,18 +46,7 @@ public class Server {
 		collection.insertOne(document);
 	}
 	
-	// retrieves a recipe from MongoDB database by title and converts it into a recipe object
-	// TODO MATEO: need to find the document with "title" = title and extract the title, description, ingredients, and instructions
-	// then use the recipe constructor to convert that into a recipe object. Please find a way to extract the fields and Bing will use them
-	// to create the recipe object
-	// you an remove this function if it's the same as searchRecipe();
-	public Recipe retrieveRecipeFromDatabase(String title) {
-		//BasicDBObject searchQuery = new BasicDBObject();
-		//searchQuery.put("title", title);
-		//DBCursor cursor = collection.find(searchQuery);
-		//System.out.println(cursor);
-		return null;
-	}
+	
 
 	// prompts user for new recipe information then stores it
 	public void createRecipe(Scanner scanner) {
@@ -98,15 +95,55 @@ public class Server {
 		addRecipeToDatabase(newRecipe);
 	}
 
-	// TODO MATEO: this might have the same functionality as retrieveRecipeFromDatabase actually. This needs to be made in such a way
-	// that it can be called by browseRecipe.
+	//CONVERTS MONGOCURSOR TO ARRAYLIST OF RECIPES
+	public ArrayList<Recipe> convertToArrayListHelper(FindIterable<Document> documents) {
+		MongoCursor<Document> cursor = documents.iterator();
+		ArrayList<Recipe> recipes = new ArrayList<>();
+		
+		try {
+    		while (cursor.hasNext()) {
+    			recipes.add(generateRecipeFromDocument(cursor.next()));
+        		//System.out.println(cursor.next().toJson());
+    		}
+		} finally {
+    		cursor.close();
+		}
+
+		return recipes;
+	}
+
+	//CONVERTS DOCUMENT TO RECIPE
+	public Recipe generateRecipeFromDocument(Document document) {
+
+		String title = document.getString("title");
+		String description = document.getString("description");
+		ArrayList<String> ingredients = new ArrayList(document.getList​("ingredients", String.class));
+		ArrayList<String> instructions = new ArrayList(document.getList​("instructions", String.class));
+		return new Recipe(title, description, ingredients, instructions);
+
+
+	}
+
+	
 	public Recipe searchRecipe(String searchTitle) {
+		FindIterable<Document> documents = collection.find(regex("title", searchTitle));
+		ArrayList<Recipe> recipes = convertToArrayListHelper(documents);
+
+		//This is for testing purpose
+		System.out.println();
+		System.out.println("SEARCH");
+		System.out.println();
+		for (Recipe r: recipes) {
+			System.out.println(r.getTitle());
+		}
+
+		//TODO DAWSON: USER HAS TO SELECT THE TITLE IT WANTS IF MORE THAN ONE matches
 		return null;	
 	}
 
-	// TODO DAWSON: Coordinate with mateo on this. This should use the collection variable (recipes database) and print out 
-	// each document (recipe) in the database. Then the user will choose a recipe by title, then you call the searchRecipe(title)
-	// function to get the recipe. 
+
+
+	// TODO DAWSON: DISPLAY AND SELECTION OF RECIPE
 	public Recipe browseRecipe(Scanner scanner) {
 		/*for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);
@@ -125,6 +162,18 @@ public class Server {
 		}
 		//INVALID ID
 		System.out.println("No matches found");*/
+
+		FindIterable<Document> documents = collection.find();
+		ArrayList<Recipe> recipes = convertToArrayListHelper(documents);
+
+		//This is for testing purpose
+		System.out.println();
+		System.out.println("BROWSE");
+		System.out.println();
+		for (Recipe r: recipes) {
+			System.out.println(r.getTitle());
+		}
+
 		return null;
 	}
 }
