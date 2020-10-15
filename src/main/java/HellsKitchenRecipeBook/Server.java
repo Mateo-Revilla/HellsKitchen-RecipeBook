@@ -27,22 +27,10 @@ public class Server {
 		MongoDatabase database = mongoClient.getDatabase("RecipeBook");
 		collection = database.getCollection("Recipes");
 	}
-
-	public void testInsert() {
-		Document document = new Document();
-		document.append("title", "THETITLE");
-		document.append("description", "DESCRIPTION");
-		List<String> ingredients = Arrays.asList("a","b","C");
-		document.append("ingredients", ingredients);
-		List<String> instructions = Arrays.asList("e","d","f");
-		document.append("instructions", instructions);
-		collection.insertOne(document);
-	}
 	
-	// adds recipe to local memory and JSON database
+	// adds recipe to MongoDB database
 	public void addRecipeToDatabase(Recipe recipe) {
 		Document document = new Document();
-		document.append("id", recipe.getId());
 		document.append("title", recipe.getTitle());
 		document.append("description", recipe.getDescription());
 		document.append("ingredients", recipe.getIngredients());
@@ -50,6 +38,19 @@ public class Server {
 		collection.insertOne(document);
 	}
 	
+	// retrieves a recipe from MongoDB database by title and converts it into a recipe object
+	// TODO MATEO: need to find the document with "title" = title and extract the title, description, ingredients, and instructions
+	// then use the recipe constructor to convert that into a recipe object. Please find a way to extract the fields and Bing will use them
+	// to create the recipe object
+	// you an remove this function if it's the same as searchRecipe();
+	public Recipe retrieveRecipeFromDatabase(String title) {
+		//BasicDBObject searchQuery = new BasicDBObject();
+		//searchQuery.put("title", title);
+		//DBCursor cursor = collection.find(searchQuery);
+		//System.out.println(cursor);
+		return null;
+	}
+
 	// prompts user for new recipe information then stores it
 	public void createRecipe(Scanner scanner) {
 		System.out.println("Welcome to creating a recipe!");
@@ -59,7 +60,7 @@ public class Server {
 		System.out.println("Please add a description then press ENTER.");
 		String des = scanner.nextLine();
 		
-		Recipe newRecipe = new Recipe(UUID.randomUUID().toString(), name, des);
+		Recipe newRecipe = new Recipe(name, des);
 		
 		ArrayList<String> ingredients = newRecipe.getIngredients();
 		System.out.println("Enter the list of ingredients one at a time. Enter 'OK' when done");
@@ -85,14 +86,19 @@ public class Server {
 		}
 		
 		System.out.println("Adding the following recipe to recipe book...");
-		newRecipe.displayRecipe();
+		newRecipe.readAllRecipe();
 		addRecipeToDatabase(newRecipe);
 	}
 
+	// TODO MATEO: this might have the same functionality as retrieveRecipeFromDatabase actually. This needs to be made in such a way
+	// that it can be called by browseRecipe.
 	public Recipe searchRecipe(String searchTitle) {
 		return null;	
 	}
 
+	// TODO DAWSON: Coordinate with mateo on this. This should use the collection variable (recipes database) and print out 
+	// each document (recipe) in the database. Then the user will choose a recipe by title, then you call the searchRecipe(title)
+	// function to get the recipe. 
 	public Recipe browseRecipe(Scanner scanner) {
 		/*for (int i = 0; i < this.recipeList.size(); i++) {
 			Recipe rec = this.recipeList.get(i);

@@ -35,3 +35,7 @@ application {
     // Define the main class for the application.
     mainClassName = 'HellsKitchenRecipeBook.App'
 }
+
+run {    
+    standardInput = System.in
+}

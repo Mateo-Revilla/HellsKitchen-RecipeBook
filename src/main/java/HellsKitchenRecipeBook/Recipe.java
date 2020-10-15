@@ -5,12 +5,11 @@ import java.io.*;
 
 public class Recipe {
 
-	//object properties
+	// object properties
 	private String title;
 	private String description;
 	private ArrayList<String> ingredients;
 	private ArrayList<String> instructions;
-	private int step = 0;
 
 	Recipe(String title, String description) {
 		this.title = title;
@@ -35,71 +34,51 @@ public class Recipe {
 		return this.instructions;
     }
 
-	// print the contents of the recipe
-	public void displayRecipe() {
-		System.out.println("Recipe: " + this.title);
+	// print the contents of the recipe for the user to read
+	public void readAllRecipe() {
+		System.out.println("Name: " + this.title);
 		System.out.println("Description: " + this.description);
-		System.out.print("Ingredients: [");
-		for (int i = 0; i < this.ingredients.size(); i++) {
-			if (i == this.ingredients.size() - 1) {
-				System.out.print(this.ingredients.get(i) + "]");
-			}
-			else {
-				System.out.print(this.ingredients.get(i) + ", ");
-			}
-		}
-		System.out.println("\nInstructions: ");
-		for (int i = 0; i < this.instructions.size(); i++) {
-			System.out.println(this.instructions.get(i));
-		}
-		System.out.println("END OF RECIPE: " + this.title+ " ------------\n");
-	}
 
-
-	//Exploration
-	public boolean readAllRecipe() {
-		System.out.println(this.getTitle());
-		System.out.println(this.getDescription());
-		ArrayList<String> instru = this.getInstructions();
+		ArrayList<String> instr = this.getInstructions();
 		ArrayList<String> ing = this.getIngredients();
-		int instrulen = instru.size();
+		int instrlen = instr.size();
 		int inglen = ing.size();
-		for(int a = 0; a < inglen; a++) {
-                    System.out.println(a + " " + ing.get(a));
+
+		System.out.println("Ingredients: ");
+		for (int a = 0; a < inglen; a++) {
+            System.out.println(ing.get(a));
 		}
-		for(int b = 0; b < instrulen; b++) {
-	            System.out.println(b + " " + instru.get(b));
-	            System.out.println();
+
+		System.out.println("Instructions: ");
+		for (int b = 0; b < instrlen; b++) {
+			System.out.println(instr.get(b));
+			System.out.println();
 		}
 		System.out.println("End of Recipe! Enjoy!");
-		return true;
 	}
 
-	public boolean readStepRecipe() {
-		System.out.println(this.getTitle());
-		System.out.println(this.getDescription());
-		ArrayList<String> instru = this.getInstructions();
-		int instrulen = instru.size();
+	// print the recipe and the instructions step by step
+	public void readStepRecipe(Scanner scanner) {
+		System.out.println("Name: " + this.title);
+		System.out.println("Description: " + this.description);
+
+		ArrayList<String> instr = this.getInstructions();
 		ArrayList<String> ing = this.getIngredients();
+		int instrlen = instr.size();
 		int inglen = ing.size();
 
-		for(int a = 0; a < inglen; a++) {
-	        System.out.println(a + " " + ing.get(a));
+		System.out.println("Ingredients: ");
+		for (int a = 0; a < inglen; a++) {
+	        System.out.println(ing.get(a));
 		}
-		for(int a = 0; a < inglen; a++){
-	            System.out.println(a + 1 + " " + ing.get(a));
-		}
-		Scanner inputReader = new Scanner(System.in);
-		while (inputReader.hasNextLine() && step < instrulen) {
+
+		int step = 0;
+		while (scanner.hasNextLine() && step < instrlen) {
 		     System.out.println();
-		     System.out.println((step + 1) + " " + instru.get(step));
+		     System.out.println(instr.get(step));
 		     step += 1;
-		     inputReader.nextLine();
+		     scanner.nextLine();
     	}
-        // close the scanner
-    	inputReader.close();
-		step = 0;
 		System.out.println("End of Recipe! Enjoy!");
-		return true;
 	}
 }
