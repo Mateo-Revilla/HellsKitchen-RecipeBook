@@ -53,8 +53,12 @@ public class Server {
 
 	// prompts user for new recipe information then stores it
 	public void createRecipe(Scanner scanner) {
-		System.out.println("Welcome to creating a recipe!");
-		
+		System.out.println("   __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __");
+		System.out.println("  |                                                              |");
+		System.out.println("  |               Welcome to creating a new recipe!              |");
+		System.out.println("  |__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __|");
+		System.out.println();
+
 		System.out.println("What will the recipe be called?");
 		String name = scanner.nextLine().toLowerCase();
 		System.out.println("Please add a description then press ENTER.");
@@ -85,7 +89,11 @@ public class Server {
 			i++;
 		}
 		
-		System.out.println("Adding the following recipe to recipe book...");
+		System.out.println("   __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __");
+		System.out.println("  |                                                              |");
+		System.out.println("  |          Adding the following recipe to recipe book          |");
+		System.out.println("  |__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __|");
+		System.out.println();
 		newRecipe.readAllRecipe();
 		addRecipeToDatabase(newRecipe);
 	}

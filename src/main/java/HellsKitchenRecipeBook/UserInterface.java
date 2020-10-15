@@ -15,8 +15,19 @@ public class UserInterface {
 	}
 
 	public void execute() {
-		
-		System.out.println("Welcome to the Recipe Book. Here you will be able to save and retrieve your favorite Recipes.");
+		System.out.println("   __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __");
+		System.out.println("  |                  __      __        __     __                 |");
+		System.out.println("  |                /   /   /   /     /   /  /   /                |");
+		System.out.println("  |               /   /__ /   /     /   /_ /   /                 |");
+		System.out.println("  |              /    ___    /     /    _    <                   |");
+		System.out.println("  |             /   /   /   /     /   /  \\   \\                   |");
+		System.out.println("  |            /__ /   /__ /     /__ /   /__ /                   |");
+		System.out.println("  |                                                              |");
+		System.out.println("  |   Welcome to Hell's Kitchen Recipe Book! Your one place to   |");
+		System.out.println("  |        store and retrieve all your favorite recipes.         |");
+		System.out.println("  |__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __|");
+		System.out.println();
+
 		createOrRetrieve();
 	}
 
@@ -43,6 +54,12 @@ public class UserInterface {
 	}
 
 	public void retrieveRecipe() {
+	    System.out.println("   __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __");
+		System.out.println("  |                                                              |");
+		System.out.println("  |               Welcome to retrieving a recipe!                |");
+		System.out.println("  |__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __|");
+		System.out.println();
+
 		System.out.println("Enter 'N' to search recipe by name or 'A' to browse all recipes and select one or 'B' to go back");
 		String userAnswer = scanner.nextLine().toUpperCase();
 		if (userAnswer.equals("N")) {

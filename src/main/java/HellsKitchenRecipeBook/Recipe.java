@@ -52,9 +52,8 @@ public class Recipe {
 		System.out.println("Instructions: ");
 		for (int b = 0; b < instrlen; b++) {
 			System.out.println(instr.get(b));
-			System.out.println();
 		}
-		System.out.println("End of Recipe! Enjoy!");
+		System.out.println("End of Recipe! Enjoy!\n");
 	}
 
 	// print the recipe and the instructions step by step
@@ -73,12 +72,12 @@ public class Recipe {
 		}
 
 		int step = 0;
+		System.out.println("Instructions: (press ENTER to see the next step)");
 		while (scanner.hasNextLine() && step < instrlen) {
-		     System.out.println();
 		     System.out.println(instr.get(step));
 		     step += 1;
 		     scanner.nextLine();
     	}
-		System.out.println("End of Recipe! Enjoy!");
+		System.out.println("End of Recipe! Enjoy!\n");
 	}
 }
