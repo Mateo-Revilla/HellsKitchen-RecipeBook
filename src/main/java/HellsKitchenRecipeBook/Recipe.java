@@ -80,11 +80,11 @@ public class Recipe {
 
 		int step = 0;
 		System.out.println("Instructions: (press ENTER to see the next step)");
-		while (scanner.hasNextLine() && step < instrlen) {
+		while (step < instrlen) {
 		     System.out.println(instr.get(step));
-		     step += 1;
+		     step++;
 		     scanner.nextLine();
-    	}
+		}
 		System.out.println("End of Recipe! Enjoy!\n");
 	}
 }

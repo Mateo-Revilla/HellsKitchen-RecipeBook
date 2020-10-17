@@ -35,12 +35,12 @@ public class UserInterface {
 		System.out.println("Enter 'C' if you wish to create a new recipe or 'R' to retrieve a recipe. Enter 'Q' to quit.");
 		String userAnswer = scanner.nextLine().toUpperCase();
 		if (userAnswer.equals("C")) {
-			// CREATE
+			// create a recipe
 			this.server.createRecipe(this.scanner);
 			createOrRetrieve();
 		} 
 		else if (userAnswer.equals("R")) {
-			// RETRIEVE
+			// retrieve a recipe
 			retrieveRecipe();
 		} 
 		else if (userAnswer.equals("Q")) {
@@ -63,12 +63,13 @@ public class UserInterface {
 		System.out.println("Enter 'N' to search recipe by name or 'A' to browse all recipes and select one or 'B' to go back");
 		String userAnswer = scanner.nextLine().toUpperCase();
 		if (userAnswer.equals("N")) {
-			// SEARCH BY NAME
-			System.out.println("Please enter title.");
+			// search recipe by name
+			System.out.println("Please enter title of the recipe you want to find");
 			String title = scanner.nextLine().toLowerCase();
 			Recipe rec = server.searchRecipe(title, scanner);
 			if (rec == null) {
-				System.out.println("Not found");
+				System.out.println("There were no recipes matching that title");
+				System.out.println();
 				retrieveRecipe();
 			} 
 			else {
@@ -76,10 +77,11 @@ public class UserInterface {
 			}
 		} 
 		else if (userAnswer.equals("A")) {
-			// BROWSE ALL
+			// browse all recipes
 			Recipe rec = server.browseRecipe(scanner);
 			if (rec == null) {
-				System.out.println("Not found");
+				System.out.println("There were no recipes matching that title");
+				System.out.println();
 				retrieveRecipe();
 			} 
 			else {
@@ -98,12 +100,12 @@ public class UserInterface {
 		System.out.println("Enter 'E' to read entire recipe or 'S' to step through the instructions one at the time or 'B' to go back");
 		String userAnswer = scanner.nextLine().toUpperCase();
 		if (userAnswer.equals("E")) {
-			// READ ENTIRE RECIPE
+			// read entire recipe
 			recipe.readAllRecipe();
 			createOrRetrieve();
 		} 
 		else if (userAnswer.equals("S")) {
-			// STEP THROUGH INSTRUCTIONS
+			// step-by-step instructions
 			recipe.readStepRecipe(scanner);
 			createOrRetrieve();
 		} 

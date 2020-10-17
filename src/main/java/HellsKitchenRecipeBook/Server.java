@@ -30,10 +30,6 @@ public class Server {
 		MongoClient mongoClient = MongoClients.create(settings);
 		MongoDatabase database = mongoClient.getDatabase("RecipeBook");
 		collection = database.getCollection("Recipes");
-
-		//This is for testing purpose
-		// searchRecipe("pasta");
-		// browseRecipe( new Scanner(System.in));
 	}
 	
 	// adds recipe to MongoDB database
@@ -46,8 +42,6 @@ public class Server {
 		collection.insertOne(document);
 	}
 	
-	
-
 	// prompts user for new recipe information then stores it
 	public void createRecipe(Scanner scanner) {
 		System.out.println("   __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __");
@@ -95,7 +89,7 @@ public class Server {
 		addRecipeToDatabase(newRecipe);
 	}
 
-	//CONVERTS MONGOCURSOR TO ARRAYLIST OF RECIPES
+	// converts mongocursor to arraylist of recipes
 	public ArrayList<Recipe> convertToArrayListHelper(FindIterable<Document> documents) {
 		MongoCursor<Document> cursor = documents.iterator();
 		ArrayList<Recipe> recipes = new ArrayList<>();
@@ -103,16 +97,15 @@ public class Server {
 		try {
     		while (cursor.hasNext()) {
     			recipes.add(generateRecipeFromDocument(cursor.next()));
-        		//System.out.println(cursor.next().toJson());
     		}
-		} finally {
+		}
+		finally {
     		cursor.close();
 		}
-
 		return recipes;
 	}
 
-	//CONVERTS DOCUMENT TO RECIPE
+	// converts MongoDB Document object to Recipe object
 	public Recipe generateRecipeFromDocument(Document document) {
 
 		String title = document.getString("title");
@@ -120,76 +113,64 @@ public class Server {
 		ArrayList<String> ingredients = new ArrayList(document.getList​("ingredients", String.class));
 		ArrayList<String> instructions = new ArrayList(document.getList​("instructions", String.class));
 		return new Recipe(title, description, ingredients, instructions);
-
-
 	}
 
-	
+	// returns a recipe based on user search query
 	public Recipe searchRecipe(String searchTitle, Scanner scanner) {
+		// finds a document(s) in MongoDB by title using regex and stores all matches in an arraylist of recipes
 		FindIterable<Document> documents = collection.find(regex("title", searchTitle));
 		ArrayList<Recipe> recipes = convertToArrayListHelper(documents);
 
-		//This is for testing purpose
-		System.out.println();
-		System.out.println("SEARCH");
-		System.out.println();
-		for (Recipe r: recipes) {
-			System.out.println(r.getTitle());
-		}
-
-		//TODO DAWSON: USER HAS TO SELECT THE TITLE IT WANTS IF MORE THAN ONE matches
-		System.out.println("Enter the title of the recipe you want to select");
-		String title = scanner.nextLine();
-		for (Recipe r: recipes) {
-			if (r.getTitle().equals(title)) {
-				return r;
+		if (recipes.size() > 0) {
+			System.out.println("   __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __");
+			System.out.println("  |                                                              |");
+			System.out.println("  |   Here are the recipes we found matching your search query   |");
+			System.out.println("  |__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __|");
+			System.out.println();
+			int i = 1;
+			for (Recipe r: recipes) {
+				System.out.println(i + ". " + r.getTitle());
+				i++;
+			}
+			System.out.println();
+	
+			// select a recipe from the list of all matching recipes
+			System.out.println("Enter the exact title of the recipe you want to select");
+			String title = scanner.nextLine();
+			for (Recipe r: recipes) {
+				if (r.getTitle().equals(title)) {
+					return r;
+				}
 			}
 		}
-
 		return null;
 	}
 
-
-
-	// TODO DAWSON: DISPLAY AND SELECTION OF RECIPE
+	// display all recipes in the recipe book so the user can select one
 	public Recipe browseRecipe(Scanner scanner) {
-		/*for (int i = 0; i < this.recipeList.size(); i++) {
-			Recipe rec = this.recipeList.get(i);
-			String recTitle = rec.getTitle();
-			String redId = rec.getId();
-			System.out.println(redId + " " + recTitle);
-		}
-		System.out.println("Please enter the ID number of the recipe you want to select");
-		String id = scanner.nextLine();
-		for (int i = 0; i < this.recipeList.size(); i++) {
-			Recipe rec = this.recipeList.get(i);
-			String redId = rec.getId();
-			if (id.equals(redId)) {
-				return rec;
-			}
-		}
-		//INVALID ID
-		System.out.println("No matches found");*/
-
+		// get list of all recipes from MongoDB database
 		FindIterable<Document> documents = collection.find();
 		ArrayList<Recipe> recipes = convertToArrayListHelper(documents);
 
-		//This is for testing purpose
+		System.out.println("   __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __");
+		System.out.println("  |                                                              |");
+		System.out.println("  |         Here are all the recipes in your recipe book         |");
+		System.out.println("  |__ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __|");
 		System.out.println();
-		System.out.println("BROWSE");
-		System.out.println();
+		int i = 1;
 		for (Recipe r: recipes) {
-			System.out.println(r.getTitle());
+			System.out.println(i + ". " + r.getTitle());
+			i++;
 		}
+		System.out.println();
 
-		System.out.println("Enter the title of the recipe you want to select");
+		System.out.println("Enter the exact title of the recipe you want to select");
 		String title = scanner.nextLine();
 		for (Recipe r: recipes) {
 			if (r.getTitle().equals(title)) {
 				return r;
 			}
 		}
-
 		return null;
 	}
 }

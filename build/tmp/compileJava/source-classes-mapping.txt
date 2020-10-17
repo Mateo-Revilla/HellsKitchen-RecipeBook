@@ -1,8 +1,8 @@
 HellsKitchenRecipeBook/App.java
  HellsKitchenRecipeBook.App
-HellsKitchenRecipeBook/Recipe.java
- HellsKitchenRecipeBook.Recipe
 HellsKitchenRecipeBook/UserInterface.java
  HellsKitchenRecipeBook.UserInterface
 HellsKitchenRecipeBook/Server.java
  HellsKitchenRecipeBook.Server
+HellsKitchenRecipeBook/Recipe.java
+ HellsKitchenRecipeBook.Recipe
