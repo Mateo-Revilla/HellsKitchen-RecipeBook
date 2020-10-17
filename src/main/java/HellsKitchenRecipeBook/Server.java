@@ -32,8 +32,8 @@ public class Server {
 		collection = database.getCollection("Recipes");
 
 		//This is for testing purpose
-		searchRecipe("pasta");
-		browseRecipe( new Scanner(System.in));
+		// searchRecipe("pasta");
+		// browseRecipe( new Scanner(System.in));
 	}
 	
 	// adds recipe to MongoDB database
@@ -125,7 +125,7 @@ public class Server {
 	}
 
 	
-	public Recipe searchRecipe(String searchTitle) {
+	public Recipe searchRecipe(String searchTitle, Scanner scanner) {
 		FindIterable<Document> documents = collection.find(regex("title", searchTitle));
 		ArrayList<Recipe> recipes = convertToArrayListHelper(documents);
 
@@ -138,7 +138,15 @@ public class Server {
 		}
 
 		//TODO DAWSON: USER HAS TO SELECT THE TITLE IT WANTS IF MORE THAN ONE matches
-		return null;	
+		System.out.println("Enter the title of the recipe you want to select");
+		String title = scanner.nextLine();
+		for (Recipe r: recipes) {
+			if (r.getTitle().equals(title)) {
+				return r;
+			}
+		}
+
+		return null;
 	}
 
 
@@ -172,6 +180,14 @@ public class Server {
 		System.out.println();
 		for (Recipe r: recipes) {
 			System.out.println(r.getTitle());
+		}
+
+		System.out.println("Enter the title of the recipe you want to select");
+		String title = scanner.nextLine();
+		for (Recipe r: recipes) {
+			if (r.getTitle().equals(title)) {
+				return r;
+			}
 		}
 
 		return null;
