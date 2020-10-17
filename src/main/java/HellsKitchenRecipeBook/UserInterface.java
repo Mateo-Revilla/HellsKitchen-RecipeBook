@@ -66,7 +66,7 @@ public class UserInterface {
 			// SEARCH BY NAME
 			System.out.println("Please enter title.");
 			String title = scanner.nextLine().toLowerCase();
-			Recipe rec = server.searchRecipe(title);
+			Recipe rec = server.searchRecipe(title, scanner);
 			if (rec == null) {
 				System.out.println("Not found");
 				retrieveRecipe();
