@@ -135,12 +135,11 @@ public class Server {
 			System.out.println();
 	
 			// select a recipe from the list of all matching recipes
-			System.out.println("Enter the exact title of the recipe you want to select");
-			String title = scanner.nextLine();
-			for (Recipe r: recipes) {
-				if (r.getTitle().equals(title)) {
-					return r;
-				}
+			System.out.println("Enter then number from the list of results you want to select");
+			String indexStr = scanner.nextLine();
+			int index = Integer.parseInt(indexStr) - 1;
+			if (index > -1 && index < recipes.size()) {
+				return recipes.get(index);
 			}
 		}
 		return null;
@@ -164,12 +163,11 @@ public class Server {
 		}
 		System.out.println();
 
-		System.out.println("Enter the exact title of the recipe you want to select");
-		String title = scanner.nextLine();
-		for (Recipe r: recipes) {
-			if (r.getTitle().equals(title)) {
-				return r;
-			}
+		System.out.println("Enter then number from the list of results you want to select");
+		String indexStr = scanner.nextLine();
+		int index = Integer.parseInt(indexStr) - 1;
+		if (index > -1 && index < recipes.size()) {
+			return recipes.get(index);
 		}
 		return null;
 	}
