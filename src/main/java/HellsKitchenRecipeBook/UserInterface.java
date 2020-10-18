@@ -64,7 +64,7 @@ public class UserInterface {
 		String userAnswer = scanner.nextLine().toUpperCase();
 		if (userAnswer.equals("N")) {
 			// search recipe by name
-			System.out.println("Please enter title of the recipe you want to find");
+			System.out.println("Please enter the title of the recipe you want to find");
 			String title = scanner.nextLine().toLowerCase();
 			Recipe rec = server.searchRecipe(title, scanner);
 			if (rec == null) {
@@ -97,7 +97,7 @@ public class UserInterface {
 	}
 
 	public void exploreRecipe(Recipe recipe) {
-		System.out.println("Enter 'E' to read entire recipe or 'S' to step through the instructions one at the time or 'B' to go back");
+		System.out.println("Enter 'E' to read entire recipe or 'S' to step through the instructions one at a time or 'B' to go back");
 		String userAnswer = scanner.nextLine().toUpperCase();
 		if (userAnswer.equals("E")) {
 			// read entire recipe

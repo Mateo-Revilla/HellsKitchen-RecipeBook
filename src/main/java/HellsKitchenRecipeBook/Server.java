@@ -135,7 +135,7 @@ public class Server {
 			System.out.println();
 	
 			// select a recipe from the list of all matching recipes
-			System.out.println("Enter then number from the list of results you want to select");
+			System.out.println("Enter the number from the list of recipes you want to select");
 			String indexStr = scanner.nextLine();
 			int index = Integer.parseInt(indexStr) - 1;
 			if (index > -1 && index < recipes.size()) {
@@ -163,7 +163,7 @@ public class Server {
 		}
 		System.out.println();
 
-		System.out.println("Enter then number from the list of results you want to select");
+		System.out.println("Enter the number from the list of recipes you want to select");
 		String indexStr = scanner.nextLine();
 		int index = Integer.parseInt(indexStr) - 1;
 		if (index > -1 && index < recipes.size()) {
