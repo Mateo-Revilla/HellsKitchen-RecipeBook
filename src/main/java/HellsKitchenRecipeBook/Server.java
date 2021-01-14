@@ -21,7 +21,7 @@ public class Server {
 
 	Server() {
 		ConnectionString connString = new ConnectionString(
-    	"mongodb+srv://user1:hellskitchen@hellskitchenrecipebook.vempc.mongodb.net/HellsKitchenRecipeBook?retryWrites=true&w=majority"
+    	//HERE ADD CONNECTION STRING
 		);
 		MongoClientSettings settings = MongoClientSettings.builder()
     	.applyConnectionString(connString)
